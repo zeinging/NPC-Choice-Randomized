@@ -63,45 +63,17 @@ public class NPCRandom : MonoBehaviour
 
 
 
-        //if (Random.Range(1, fractionNumber) == 1)//1/6 chance of getting 1
-        //{
-        //increment ending index
-        //}
-        //else {
-        //decrement ending index.   5/6 of getting anything else
-        //}
-        //print("Pressed Submit");
-
-        //int temp = 0;
 
         
 
 
 
-        //for (int i = 0; i < fractionNumber; i++) {
+
 
             Rand = Random.Range(0, remainingNumbers.Count);
 
 
-        //while(repeateList.Contains(Rand))
-        //{
 
-        //Rand = Random.Range(1, fractionNumber);
-
-        //return;
-        //}
-
-
-        //repeateList.Add(Rand);
-
-
-
-        //if (repeateList.Capacity == 0) {
-
-
-
-
-        //}
 
         SelectedNumber = remainingNumbers[Rand];
 
