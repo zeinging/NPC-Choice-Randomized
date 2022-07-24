@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class NPCRandom : MonoBehaviour
 {
@@ -44,6 +42,11 @@ public class NPCRandom : MonoBehaviour
             NPCDecisionCalculation();
         
         }
+
+    }
+
+    void FixedUpdate() 
+    {
 
     }
 
