@@ -54,7 +54,11 @@
         "Temp/":true
     },
     "editor.defaultFormatter": "ms-dotnettools.csharp",
-    "editor.formatOnSave": false,
+    "editor.formatOnSave": true,
     "html.format.wrapAttributesIndentSize": null,
-    "omnisharp.useEditorFormattingSettings": false
+    "omnisharp.useEditorFormattingSettings": true,
+    "csharp.format.enable": true,
+    "[csharp]": {
+        "editor.defaultFormatter": "csharpier.csharpier-vscode"
+    }
 }

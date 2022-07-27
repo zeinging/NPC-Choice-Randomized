@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class NPCRandom : MonoBehaviour
 {
+    public float Probablity = 0.5f,
+        influence = 0.3f;
 
-    public float Probablity = 0.5f, influence = 0.3f;
-
-    public int Ending = 0, fractionNumber = 6;
+    public int Ending = 0,
+        fractionNumber = 6;
 
     public PlayerUICTRL controls;
 
@@ -16,10 +17,8 @@ public class NPCRandom : MonoBehaviour
     public int SelectedNumber;
     public List<int> remainingNumbers;
 
-
-
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         controls = new PlayerUICTRL();
 
@@ -34,75 +33,48 @@ public class NPCRandom : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
-        if (controls.UI.Submit.triggered) {
-
+        if (controls.UI.Submit.triggered)
+        {
             NPCDecisionCalculation();
-        
         }
-
     }
 
-    void FixedUpdate() 
+    private void GetListOfNumbers()
     {
-
-    }
-
-    private void GetListOfNumbers() {
-
-        for (int i = 1; i < fractionNumber; i++) {
-
+        for (int i = 1; i < fractionNumber; i++)
+        {
             remainingNumbers.Add(i);
-
         }
-        
-    
     }
 
+    public void NPCDecisionCalculation()
+    {
+        _ = Random.Range(0, 3);
 
-    public void NPCDecisionCalculation() {
-
-
-
-
-        
-
-
-
-
-
-            Rand = Random.Range(0, remainingNumbers.Count);
-
-
-
+        Rand = Random.Range(0, remainingNumbers.Count);
 
         SelectedNumber = remainingNumbers[Rand];
 
         if (remainingNumbers.Count > 1)
         {
             //remainingNumbers.Add(Rand);
-                //SelectedNumber = remainingNumbers[Rand];
-                if(FilterOutRepeats)
+            //SelectedNumber = remainingNumbers[Rand];
+            if (FilterOutRepeats)
+            {
                 remainingNumbers.RemoveAt(Rand);
-            
+            }
         }
-        else {
-
-
+        else
+        {
             //remainingNumbers.Clear();
             remainingNumbers.Clear();
             GetListOfNumbers();
-
         }
-
-
-
 
         switch (SelectedNumber)
         {
-
             case 1:
                 print("1");
                 break;
@@ -130,18 +102,6 @@ public class NPCRandom : MonoBehaviour
             default:
                 print("range out of bounds");
                 break;
-
         }
-    
-
-        
-        }
-
-
-
-
-
-    
     }
-
-
+}
