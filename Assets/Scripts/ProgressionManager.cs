@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using PixelCrushers.DialogueSystem;
 using UnityEngine;
 
 namespace NPCChoiceRandomized.DialogueSystem
@@ -22,11 +23,34 @@ namespace NPCChoiceRandomized.DialogueSystem
             }
         }
 
-        private readonly Dictionary<Endings, int> ProgressionDictionary =
-            new Dictionary<Endings, int>();
+        [SerializeField]
+        private Dictionary<Endings, int> ProgressionDictionary = new Dictionary<Endings, int>();
 
         // This syntax initializes the dictionary with all endings starting at 0;
 
+        [Tooltip(
+            "Typically leave unticked so temporary Dialogue Managers don't unregister your functions."
+        )]
+        public static bool unregisterOnDisable = false;
+
+        private void OnEnable()
+        {
+            // Make the functions available to Lua: (Replace these lines with your own.)i
+            Lua.RegisterFunction(
+                "IncrementEndingWeightValue",
+                this,
+                SymbolExtensions.GetMethodInfo(() => IncrementEndingWeightValue(0, 5))
+            );
+        }
+
+        private void OnDisable()
+        {
+            if (unregisterOnDisable)
+            {
+                // Remove the functions from Lua: (Replace these lines with your own.)
+                Lua.UnregisterFunction("");
+            }
+        }
 
         private void Awake()
         {
@@ -39,8 +63,12 @@ namespace NPCChoiceRandomized.DialogueSystem
             }
         }
 
-        public void IncrementEndingWeightValue(Endings ending, int increment)
+        public void IncrementEndingWeightValue(double endingDouble, double incrementDouble)
         {
+            Debug.Log("Running Increment Function");
+            Endings ending = (Endings)endingDouble;
+            int increment = (int)incrementDouble;
+
             if (!ProgressionDictionary.ContainsKey(ending))
             {
                 HandleEndingNotInDictionary(ending);
@@ -49,6 +77,9 @@ namespace NPCChoiceRandomized.DialogueSystem
             }
 
             ProgressionDictionary[ending] += increment;
+
+            Debug.Log("VALUE AFTER INCREMENT");
+            Debug.Log(ProgressionDictionary[ending]);
         }
 
         public Dictionary<Endings, int> GetWeightedValues(Endings? ending = null)

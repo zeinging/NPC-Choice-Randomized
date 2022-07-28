@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1dbbc84c70300ba489dc1fe1961516ec, type: 3}
-  m_Name: ProgressionManagerLuaFunctionInfo
+  m_Name: ProgressionManagerLuaInfo
   m_EditorClassIdentifier: 
   conditionFunctions: []
   scriptFunctions:
-  - functionName: GetWeightedValueLua
-    parameters: 01000000
-    returnValue: 2
+  - functionName: IncrementEndingWeightValue
+    parameters: 0100000001000000
+    returnValue: 0
