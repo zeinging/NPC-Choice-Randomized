@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using PixelCrushers.DialogueSystem;
 using UnityEngine;
 
-namespace NPCChoiceRandomized.DialogueSystem.Lua.MethodRegister
+namespace NPCChoiceRandomized.DialogueSystem
 {
     public class ProgressionManagerLuaRegister : MonoBehaviour
     {
@@ -46,7 +46,8 @@ namespace NPCChoiceRandomized.DialogueSystem.Lua.MethodRegister
             int parsedInt = (int)ending;
             Endings targetedEnding = (Endings)parsedInt;
 
-            Dictionary<Endings, int> returnedDictionary = GetWeightedValues(targetedEnding);
+            Dictionary<Endings, int> returnedDictionary =
+                ProgressionManager.Instance.GetWeightedValues(targetedEnding);
 
             return returnedDictionary[0]; // Should acccess first item since we targeted and Ending
         }
