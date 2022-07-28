@@ -1,10 +1,9 @@
 using System.Collections.Generic;
-using PixelCrushers.DialogueSystem;
 using UnityEngine;
 
 namespace NPCChoiceRandomized.DialogueSystem
 {
-    public class ProgressionManagerLuaRegister : MonoBehaviour
+    public static class ProgressionManagerLuaRegister
     {
         // Rename this class to the same name that you used for the script file.
         // Add the script to your Dialogue Manager. You can optionally make this
@@ -20,28 +19,9 @@ namespace NPCChoiceRandomized.DialogueSystem
         [Tooltip(
             "Typically leave unticked so temporary Dialogue Managers don't unregister your functions."
         )]
-        public bool unregisterOnDisable = false;
+        public static bool unregisterOnDisable = false;
 
-        private void OnEnable()
-        {
-            // Make the functions available to Lua: (Replace these lines with your own.)i
-            Lua.RegisterFunction(
-                "GetWeightedValueLua",
-                this,
-                SymbolExtensions.GetMethodInfo(() => GetWeightedValueLua(0))
-            );
-        }
-
-        private void OnDisable()
-        {
-            if (unregisterOnDisable)
-            {
-                // Remove the functions from Lua: (Replace these lines with your own.)
-                Lua.UnregisterFunction("GetWeightedValueLua");
-            }
-        }
-
-        public double GetWeightedValueLua(double ending)
+        public static double GetWeightedValueLua(double ending)
         {
             int parsedInt = (int)ending;
             Endings targetedEnding = (Endings)parsedInt;
