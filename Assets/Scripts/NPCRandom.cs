@@ -1,107 +1,110 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCRandom : MonoBehaviour
+namespace NPCChoiceRandomized.DialogueSystem
 {
-    public float Probablity = 0.5f,
-        influence = 0.3f;
-
-    public int Ending = 0,
-        fractionNumber = 6;
-
-    public PlayerUICTRL controls;
-
-    public bool FilterOutRepeats = true;
-
-    public int Rand;
-    public int SelectedNumber;
-    public List<int> remainingNumbers;
-
-    // Start is called before the first frame update
-    private void Start()
+    public class NPCRandom : MonoBehaviour
     {
-        controls = new PlayerUICTRL();
+        public float Probablity = 0.5f,
+            influence = 0.3f;
 
-        //controls.UI.Submit.performed += ctx => NPCDecisionCalculation();
+        public int Ending = 0,
+            fractionNumber = 6;
 
-        controls.Enable();
+        public PlayerUICTRL controls;
 
-        GetListOfNumbers();
+        public bool FilterOutRepeats = true;
 
-        //repeateList = new List<int>(new int[Length]);
-        //repeateList = new int[fractionNumber];
-    }
+        public int Rand;
+        public int SelectedNumber;
+        public List<int> remainingNumbers;
 
-    // Update is called once per frame
-    private void Update()
-    {
-        if (controls.UI.Submit.triggered)
+        // Start is called before the first frame update
+        private void Start()
         {
-            NPCDecisionCalculation();
+            controls = new PlayerUICTRL();
+
+            //controls.UI.Submit.performed += ctx => NPCDecisionCalculation();
+
+            controls.Enable();
+
+            GetListOfNumbers();
+
+            //repeateList = new List<int>(new int[Length]);
+            //repeateList = new int[fractionNumber];
         }
-    }
 
-    private void GetListOfNumbers()
-    {
-        for (int i = 1; i < fractionNumber; i++)
+        // Update is called once per frame
+        private void Update()
         {
-            remainingNumbers.Add(i);
-        }
-    }
-
-    public void NPCDecisionCalculation()
-    {
-        _ = Random.Range(0, 3);
-
-        Rand = Random.Range(0, remainingNumbers.Count);
-
-        SelectedNumber = remainingNumbers[Rand];
-
-        if (remainingNumbers.Count > 1)
-        {
-            //remainingNumbers.Add(Rand);
-            //SelectedNumber = remainingNumbers[Rand];
-            if (FilterOutRepeats)
+            if (controls.UI.Submit.triggered)
             {
-                remainingNumbers.RemoveAt(Rand);
+                NPCDecisionCalculation();
             }
         }
-        else
+
+        private void GetListOfNumbers()
         {
-            //remainingNumbers.Clear();
-            remainingNumbers.Clear();
-            GetListOfNumbers();
+            for (int i = 1; i < fractionNumber; i++)
+            {
+                remainingNumbers.Add(i);
+            }
         }
 
-        switch (SelectedNumber)
+        public void NPCDecisionCalculation()
         {
-            case 1:
-                print("1");
-                break;
+            _ = Random.Range(0, 3);
 
-            case 2:
-                print("2");
-                break;
+            Rand = Random.Range(0, remainingNumbers.Count);
 
-            case 3:
-                print("3");
-                break;
+            SelectedNumber = remainingNumbers[Rand];
 
-            case 4:
-                print("4");
-                break;
+            if (remainingNumbers.Count > 1)
+            {
+                //remainingNumbers.Add(Rand);
+                //SelectedNumber = remainingNumbers[Rand];
+                if (FilterOutRepeats)
+                {
+                    remainingNumbers.RemoveAt(Rand);
+                }
+            }
+            else
+            {
+                //remainingNumbers.Clear();
+                remainingNumbers.Clear();
+                GetListOfNumbers();
+            }
 
-            case 5:
-                print("5");
-                break;
+            switch (SelectedNumber)
+            {
+                case 1:
+                    print("1");
+                    break;
 
-            case 6:
-                print("6");
-                break;
+                case 2:
+                    print("2");
+                    break;
 
-            default:
-                print("range out of bounds");
-                break;
+                case 3:
+                    print("3");
+                    break;
+
+                case 4:
+                    print("4");
+                    break;
+
+                case 5:
+                    print("5");
+                    break;
+
+                case 6:
+                    print("6");
+                    break;
+
+                default:
+                    print("range out of bounds");
+                    break;
+            }
         }
     }
 }
