@@ -1077,7 +1077,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: 
+      userScript: GetWeightedValueLua(0)
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -1217,13 +1217,13 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: Dialog[0].SimStatus = "Untouched"
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 359.53647
+        x: 356.23978
         y: 301.36584
         width: 160
         height: 30

@@ -22,7 +22,8 @@ namespace NPCChoiceRandomized.DialogueSystem
             }
         }
 
-        public Dictionary<Endings, int> ProgressionDictionary = new Dictionary<Endings, int>();
+        private readonly Dictionary<Endings, int> ProgressionDictionary =
+            new Dictionary<Endings, int>();
 
         // This syntax initializes the dictionary with all endings starting at 0;
 
@@ -34,7 +35,7 @@ namespace NPCChoiceRandomized.DialogueSystem
             // Initializes the dictionary with all of the endings
             foreach (Endings ending in Enum.GetValues(typeof(Endings)))
             {
-                ProgressionDictionary.Add(ending, 0);
+                ProgressionDictionary.Add(ending, 5);
             }
         }
 
