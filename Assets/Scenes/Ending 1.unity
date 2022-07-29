@@ -2654,6 +2654,7 @@ GameObject:
   - component: {fileID: 1043822083}
   - component: {fileID: 1043822082}
   - component: {fileID: 1043822084}
+  - component: {fileID: 1043822085}
   m_Layer: 0
   m_Name: ProgressionManager
   m_TagString: Untagged
@@ -2706,6 +2707,19 @@ MonoBehaviour:
   minSize: {x: 384, y: 384}
   maxHistory: 20
   pauseGameWhileOpen: 0
+--- !u!114 &1043822085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043822081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 345cba91f93f6f54da645e7c0a5684cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unregisterOnDisable: 0
 --- !u!1 &1055482814
 GameObject:
   m_ObjectHideFlags: 0
