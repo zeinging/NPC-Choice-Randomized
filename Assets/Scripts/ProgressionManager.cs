@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using NPCChoiceRandomized.DialogueSystem.LuaRegisters;
 using UnityEngine;
 
 namespace NPCChoiceRandomized.DialogueSystem
@@ -37,6 +38,8 @@ namespace NPCChoiceRandomized.DialogueSystem
             {
                 ProgressionDictionary.Add(ending, 5);
             }
+
+            GetComponent<ProgressionManagerLuaRegister>().enabled = true;
         }
 
         public void IncrementEndingWeightValue(double endingDouble, double incrementDouble)
