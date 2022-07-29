@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using PixelCrushers.DialogueSystem;
+using NPCChoiceRandomized.DialogueSystem.LuaRegisters;
 using UnityEngine;
 
 namespace NPCChoiceRandomized.DialogueSystem
@@ -28,29 +28,6 @@ namespace NPCChoiceRandomized.DialogueSystem
 
         // This syntax initializes the dictionary with all endings starting at 0;
 
-        [Tooltip(
-            "Typically leave unticked so temporary Dialogue Managers don't unregister your functions."
-        )]
-        public static bool unregisterOnDisable = false;
-
-        private void OnEnable()
-        {
-            // Make the functions available to Lua: (Replace these lines with your own.)i
-            Lua.RegisterFunction(
-                "IncrementEndingWeightValue",
-                this,
-                SymbolExtensions.GetMethodInfo(() => IncrementEndingWeightValue(0, 5))
-            );
-        }
-
-        private void OnDisable()
-        {
-            if (unregisterOnDisable)
-            {
-                // Remove the functions from Lua: (Replace these lines with your own.)
-                Lua.UnregisterFunction("");
-            }
-        }
 
         private void Awake()
         {
@@ -61,6 +38,8 @@ namespace NPCChoiceRandomized.DialogueSystem
             {
                 ProgressionDictionary.Add(ending, 5);
             }
+
+            GetComponent<ProgressionManagerLuaRegister>().enabled = true;
         }
 
         public void IncrementEndingWeightValue(double endingDouble, double incrementDouble)
